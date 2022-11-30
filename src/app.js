@@ -113,65 +113,6 @@ client.on('message', (channel, userstate, message, self) => {
         log_file = today + ".log";
         attachFSLogger(log_directory + log_file);
     }
-    
-
-    //if(self) return;
-    //if (userstate.username === BOT_USERNAME) return;
-    
-    //old check if mod, can be removed but saved for reference for now
-    /*if (client.isMod(channel, userstate.username)) {
-        console.log('Message was said by moderator ' + userstate.username + ' and was not checked against the blacklist.');
-        // Handle different message types..
-        switch(userstate["message-type"]) {
-            case "action":
-                // This is an action message..
-                // Commented out to disable filtering
-                // checkTwitchChat (userstate, message, channel)
-                break;
-            case "chat":
-                // This is a chat message..
-                // Commented out to disable filtering
-                // checkTwitchChat (userstate, message, channel)
-                modCommand(userstate, message, channel)
-                useCommand(userstate, message, channel)
-
-                break;
-            case "whisper":
-                // This is a whisper..
-                break;
-            default:
-                // Something else ?
-                break;
-        }
-        
-        return;
-    }*/
-    /*
-    if (userstate.username == 'pat46rick') {
-        if (trollMode == true) {
-            console.log('Pat46rick said: ' + message);
-            var mesg = message;
-            var premsg = mesg[0];
-            if (premsg == '!') {
-                console.log('Message began with a !');
-            }
-            else if (premsg == '?') {
-                console.log('Message began with a ?');
-            }
-            else {
-                console.log('Message will be repeated.');
-                client.say(channel, `A wise teacher once said: ${message}`);
-            }
-        }
-        else {
-            console.log('Pat46rick said: ' + message);
-            console.log('Pat46rick message skipped due to troll mode toggled off.');
-        }
-    }
-    */
-
-
-
 
     if  (userstate.username == 'doleo_') {
         console.log('Message said by Doleo_');
@@ -244,13 +185,13 @@ client.on('message', (channel, userstate, message, self) => {
         switch(userstate["message-type"]) {
             case "action":
                 // This is an action message..
-                // Commented out to disable filtering
-                // checkTwitchChat (userstate, message, channel)
+                
+                checkTwitchChat (userstate, message, channel)
                 break;
             case "chat":
                 // This is a chat message..
-                // Commented out to disable filtering
-                // checkTwitchChat (userstate, message, channel)
+                
+                checkTwitchChat (userstate, message, channel)
                 if(message.charAt(0) === prefixMod) {
                     modCommand(userstate, message, channel)
                 }
@@ -312,14 +253,6 @@ function checkTwitchChat(userstate, message, channel) {
     let messageTimeout = false;
     let messageBan = false;
     let hornyBop = false;
-
-
-    /*
-    //Troll message
-    shouldTroll = TROLL_WORDS.some(trollWord => message.includes(trollWord.toLowerCase()))
-    if (shouldTroll) {
-        client.say(channel, 'Did someone call for King Troll? Kappa')
-    }*/
 
     // check message
 
