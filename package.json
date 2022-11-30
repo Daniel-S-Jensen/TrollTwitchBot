@@ -1,0 +1,21 @@
+{
+  "name": "doleobot-twitch",
+  "version": "0.0.0",
+  "description": "A Twitch Chat Bot",
+  "main": "src",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Doleo_",
+  "license": "ISC",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "git": "^0.1.5",
+    "nodemon": "^2.0.15",
+    "tmi.js": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/tmi.js": "^1.7.1"
+  }
+}
