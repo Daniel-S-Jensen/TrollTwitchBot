@@ -2,7 +2,7 @@
 export const CHANNEL_NAME = [
     '#Doleo_',
     '#Doleo_Bot',
-    //'#Zephyriai',
+    '#Zephyrial_',
     //"#Pat46rick",
     //'#Valor2K16',
     //'#princess_cartisha',

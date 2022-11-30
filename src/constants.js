@@ -50,3 +50,7 @@ export const GLOBAL_BAN_WORDS = [
     'negger',
     'nihga',
 ]
+export const GLOBAL_HORNY_WORDS = [
+    'mommy',
+    'daddy'
+]

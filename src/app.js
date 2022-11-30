@@ -1,9 +1,9 @@
 import tmi from 'tmi.js'
 //const tmi = require('tmi.js'); //same as above
-import { BOT_USERNAME, OAUTH_TOKEN, GLOBAL_BLOCKED_WORDS, GLOBAL_TIME_OUT_WORDS , GLOBAL_BAN_WORDS, GLOBAL_LINKS} from './constants'
+import { BOT_USERNAME, OAUTH_TOKEN, GLOBAL_BLOCKED_WORDS, GLOBAL_TIME_OUT_WORDS , GLOBAL_BAN_WORDS, GLOBAL_LINKS, GLOBAL_HORNY_WORDS} from './constants'
 import { CHANNEL_NAME } from './channels'
 import * as doleo_ from './channel/doleo_'
-import * as officialteddybeargamer from './channel/officialteddybeargamer'
+//import * as officialteddybeargamer from './channel/officialteddybeargamer'
 
 const fs = require("fs");
 
@@ -61,6 +61,7 @@ attachFSLogger(log_directory + log_file);
 //silent mode - Turns on/off bot responses for mod events
 var silentMode = false;
 var trollMode = false;
+var hornyMode = false;
 
 //command vars
 const prefixCommand = '!';
@@ -145,7 +146,7 @@ client.on('message', (channel, userstate, message, self) => {
         
         return;
     }*/
-    
+    /*
     if (userstate.username == 'pat46rick') {
         if (trollMode == true) {
             console.log('Pat46rick said: ' + message);
@@ -167,6 +168,8 @@ client.on('message', (channel, userstate, message, self) => {
             console.log('Pat46rick message skipped due to troll mode toggled off.');
         }
     }
+    */
+
 
 
 
@@ -202,6 +205,7 @@ client.on('message', (channel, userstate, message, self) => {
         
         return;
     }
+    
     //checks if mesage came from a mod
     else if (userstate.mod || userstate.broadcaster) {
         console.log('Message was said by moderator ' + userstate.username + ' and was not checked against the blacklist.');
@@ -233,7 +237,7 @@ client.on('message', (channel, userstate, message, self) => {
         
         return;
     }
-
+    
     else if(userstate.vip) {
         console.log('Message was said by vip ' + userstate.username + '.');
         // Handle different message types..
@@ -307,6 +311,7 @@ function checkTwitchChat(userstate, message, channel) {
     let wordDelete = false
     let messageTimeout = false;
     let messageBan = false;
+    let hornyBop = false;
 
 
     /*
@@ -324,16 +329,17 @@ function checkTwitchChat(userstate, message, channel) {
             wordDelete = isFilteredWord(doleo_.BLOCKED_WORDS, message);
             linkDelete = isFilteredWord(GLOBAL_LINKS, message);
             whitelistedLink = isFilteredWord(doleo_.WHITELIST_LINK, message);
-            wordTimeout
+            //wordTimeout
 
             break;
-        case "officialteddybeargamer":
-            break;
+        /*case "officialteddybeargamer":
+            break;*/
         default:
             wordDelete = isFilteredWord(GLOBAL_BLOCKED_WORDS, message);
             linkDelete = isFilteredWord(GLOBAL_LINKS, message);
             shouldTimeOut = isFilteredWord(GLOBAL_TIME_OUT_WORDS, message);
             shouldBan = isFilteredWord(GLOBAL_BAN_WORDS, message);
+            hornyBop = isFilteredWord(GLOBAL_HORNY_WORDS, message);
             break;
 
     }
@@ -343,7 +349,12 @@ function checkTwitchChat(userstate, message, channel) {
     }
 
 
-    
+    if (hornyBop) {
+        if (hornyMode == true) {
+            client.say(channel, `@${userstate.username}, go to horny jail! zephyr94Bonk `)
+            client.deletemessage(channel, userstate.id)
+        }
+    }
 
     
     if (shouldDeleteMessage) {
@@ -432,7 +443,7 @@ function modCommand(userstate, message, channel) {
         client.say(channel, `Silent mode has been deactivated.`);
     }
 
-    //silent mode - Turns on/off bot responses for mod events
+    //troll mode - Turns on/off bot responses for troll patrick events
     else if(message.toLowerCase() === '?trollmode') {
         trollMode = true;
         client.say(channel, `Troll mode has been activated. Sorry Patrick!`);
@@ -440,6 +451,16 @@ function modCommand(userstate, message, channel) {
     else if(message.toLowerCase() === '?trollmodeoff') {
         trollMode = false;
         client.say(channel, `Troll mode has been deactivated.`);
+    }
+
+    //horny mode
+    else if(message.toLowerCase() === '?hornymode') {
+        hornyMode = true;
+        client.say(channel, `Horny mode has been activated. Mo moar horny for u!`);
+    }
+    else if(message.toLowerCase() === '?hornymodeoff') {
+        hornyMode = false;
+        client.say(channel, `Horny mode has been deactivated.`);
     }
 
 
