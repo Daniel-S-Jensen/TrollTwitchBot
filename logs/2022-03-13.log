@@ -1,0 +1,16 @@
+[20:45] info: Connecting to irc-ws.chat.twitch.tv on port 443..
+[20:45] info: Sending authentication to server..
+[20:45] info: Connected to server.
+Connected: 443:undefined
+[20:45] info: Executing command: JOIN #doleo_
+[20:45] info: Joined #doleo_
+[20:45] info: Executing command: JOIN #doleo_bot
+[20:45] info: Joined #doleo_bot
+[20:45] info: [#doleo_] <doleo_>: testing mult logins
+Message said by Doleo_
+[20:45] info: [#doleo_] <doleo_>: ?trollmode
+Message said by Doleo_
+[20:45] info: [#doleo_] <doleo_>: Troll mode has been activated. Sorry Patrick!
+Message said by Doleo_
+[20:45] info: [#doleo_] <doleo_>: Troll mode has been activated. Sorry Patrick!
+Message said by Doleo_
