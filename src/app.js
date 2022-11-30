@@ -405,7 +405,7 @@ function useCommand(userstate, message, channel) {
 }
 
 function modCommand(userstate, message, channel) {
-    var messageArray = mesg.split(" ")
+    var messageArray = message.split(" ")
     var messageFirst = messageArray[0];
     var mesg = message.substring(0,8);
 
