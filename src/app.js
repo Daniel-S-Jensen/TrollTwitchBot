@@ -1,6 +1,7 @@
 import tmi from 'tmi.js'
 //const tmi = require('tmi.js'); //same as above
-import { BOT_USERNAME, OAUTH_TOKEN, GLOBAL_BLOCKED_WORDS, GLOBAL_TIME_OUT_WORDS , GLOBAL_BAN_WORDS, GLOBAL_LINKS, GLOBAL_HORNY_WORDS} from './constants'
+import { BOT_USERNAME, OAUTH_TOKEN, GLOBAL_BLOCKED_WORDS, GLOBAL_TIME_OUT_WORDS , GLOBAL_BAN_WORDS, GLOBAL_LINKS} from './constants'
+import { GLOBAL_HORNY_WORDS } from './hornyWords'
 import { CHANNEL_NAME } from './channels'
 import * as doleo_ from './channel/doleo_'
 //import * as officialteddybeargamer from './channel/officialteddybeargamer'
@@ -394,6 +395,14 @@ function modCommand(userstate, message, channel) {
     else if(message.toLowerCase() === '?hornymodeoff') {
         hornyMode = false;
         client.say(channel, `Horny mode has been deactivated.`);
+    }
+
+    //displays status of all modes
+    else if(message.toLowerCase() === '?status') {
+        var tempMessage = ' Silent mode: ' + silentMode;
+        tempMessage += ' Troll mode: ' + trollMode;
+        tempMessage += ' Horny mode: ' + hornyMode;
+        client.say(channel, tempMessage);
     }
 
 
