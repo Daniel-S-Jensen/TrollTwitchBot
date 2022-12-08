@@ -295,10 +295,12 @@ function checkTwitchChat(userstate, message, channel) {
             // tell user
             client.say(channel, `@${userstate.username}, sorry! Your message was deleted.`)
         }
+        /* link delete
         if (linkDelete == true) {
             // tell user
             client.say(channel, `@${userstate.username}, please do not post links in chat.`)
         }
+        */
         // delete message
         client.deletemessage(channel, userstate.id)
     }
